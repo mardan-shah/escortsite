@@ -3,7 +3,7 @@
 import { Search, Mail, UserRoundPlus, UserRound } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,7 +11,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { user, Language } from '@/types/Navigation'; // Import shared interfaces
 
 interface NavDesktopProps {
@@ -23,10 +24,25 @@ interface NavDesktopProps {
 const NavDesktop: React.FC<NavDesktopProps> = ({ user, languages, handleLanguageChange }) => {
   const [currentLanguage, setCurrentLanguage] = useState<Language>(languages[0]);
   const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const handleSelect = (lang: Language) => {
     setCurrentLanguage(lang);
     handleLanguageChange(lang.code);
+  };
+
+  useEffect(() => {
+    if (isSearchVisible && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearchVisible]);
+
+  const handleSearchClick = () => {
+    setIsSearchVisible(!isSearchVisible);
+  };
+
+  const handleSearchBlur = () => {
+    setIsSearchVisible(false);
   };
 
   return (
@@ -38,22 +54,26 @@ const NavDesktop: React.FC<NavDesktopProps> = ({ user, languages, handleLanguage
 
         <div className="flex items-center w-1/2 md:w-2/3 justify-end gap-3 md:gap-4 lg:gap-6">
           <div className="relative">
-            <Button
-              variant="ghost"
-              size="default"
-              className="flex items-center gap-2 hover:bg-gray-200"
-              onClick={() => setIsSearchVisible(!isSearchVisible)}
-            >
-              <Search className="h-4 w-4 cursor-pointer" />
-            </Button>
-            {isSearchVisible && (
-              <div className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg p-2">
-                <input
+            {isSearchVisible ? (
+              <div className="relative">
+                <Input
+                  ref={searchInputRef}
                   type="text"
                   placeholder="Search..."
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-64 pr-10"
+                  onBlur={handleSearchBlur}
                 />
+                <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               </div>
+            ) : (
+              <Button
+                variant="ghost"
+                size="default"
+                className="flex items-center gap-2 hover:bg-gray-200"
+                onClick={handleSearchClick}
+              >
+                <Search className="h-4 w-4 cursor-pointer" />
+              </Button>
             )}
           </div>
           <Button variant="ghost" size="default" className="flex items-center gap-2 hover:bg-gray-200 ">
@@ -152,3 +172,4 @@ const NavDesktop: React.FC<NavDesktopProps> = ({ user, languages, handleLanguage
 };
 
 export default NavDesktop;
+

@@ -11,82 +11,84 @@ interface PaginationProps {
 const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
   const getPageNumbers = () => {
     const pageNumbers = []
-    if (totalPages <= 7) {
+
+    if (totalPages <= 5) {
+      // Show all pages if total pages are 5 or less
       for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i)
       }
     } else {
-      pageNumbers.push(1, 2, 3)
-      if (currentPage > 4) {
+      // Always show the first page
+      pageNumbers.push(1)
+
+      // Show the previous range of pages when the current page is not near the start
+      if (currentPage > 3) {
         pageNumbers.push('...')
       }
-      if (currentPage > 3 && currentPage < totalPages - 2) {
-        pageNumbers.push(currentPage - 1, currentPage, currentPage + 1)
+
+      // Show current page and adjacent pages
+      const start = Math.max(2, currentPage - 1)
+      const end = Math.min(totalPages - 1, currentPage + 1)
+
+      for (let i = start; i <= end; i++) {
+        pageNumbers.push(i)
       }
-      if (currentPage < totalPages - 3) {
+
+      // Show the next range of pages when the current page is not near the end
+      if (currentPage < totalPages - 2) {
         pageNumbers.push('...')
       }
-      pageNumbers.push(totalPages - 2, totalPages - 1, totalPages)
+
+      // Always show the last page
+      if (totalPages > 1) {
+        pageNumbers.push(totalPages)
+      }
     }
+
     return pageNumbers
   }
 
   return (
-    <div className="mt-8 flex items-center justify-center gap-2">
+    <div className="mt-8 flex items-center justify-center gap-2 w-3/4 mx-auto">
       <Button
         variant="outline"
-        size="icon"
-        onClick={() => onPageChange(1)}
-        disabled={currentPage === 1}
-      >
-        <ChevronLeft className="h-4 w-4" />
-        <ChevronLeft className="h-4 w-4 -ml-2" />
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
+        className="text-secondarygray border-secondarygray hover:bg-secondarygray/10"
       >
         <ChevronLeft className="h-4 w-4" />
+        Previous
       </Button>
       
-      {getPageNumbers().map((pageNum, index) => (
-        pageNum === '...' ? (
-          <span key={index} className="px-2">...</span>
-        ) : (
-          <Button
-            key={index}
-            variant={currentPage === pageNum ? "default" : "outline"}
-            size="icon"
-            onClick={() => onPageChange(pageNum as number)}
-            className="w-10"
-          >
-            {pageNum}
-          </Button>
-        )
-      ))}
+      {/* Center the pagination number buttons */}
+      <div className="flex w-1/4 items-center space-x-1 justify-evenly">
+        {getPageNumbers().map((pageNum, index) => (
+          pageNum === '...' ? (
+            <span key={index} className="px-2 text-secondarygray">...</span>
+          ) : (
+            <Button
+              key={index}
+              variant={currentPage === pageNum ? "default" : "outline"}
+              size="icon"
+              onClick={() => onPageChange(pageNum as number)}
+              className={`w-10 ${currentPage === pageNum ? 'bg-primarypink text-white' : 'text-secondarygray'}`}
+            >
+              {pageNum}
+            </Button>
+          )
+        ))}
+      </div>
       
       <Button
         variant="outline"
-        size="icon"
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
+        className="text-secondarygray border-secondarygray hover:bg-secondarygray/10"
       >
-        <ChevronRight className="h-4 w-4" />
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => onPageChange(totalPages)}
-        disabled={currentPage === totalPages}
-      >
-        <ChevronRight className="h-4 w-4" />
-        <ChevronRight className="h-4 w-4 -ml-2" />
+        Next <ChevronRight className="h-4 w-4" />
       </Button>
     </div>
   )
 }
 
 export default Pagination
-

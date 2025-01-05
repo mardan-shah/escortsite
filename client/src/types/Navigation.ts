@@ -8,3 +8,13 @@ export interface Language {
 export interface user {
   name?: string;
 }
+
+export interface City {
+  name: string;
+  icon: string;
+}
+
+export interface Country {
+  name: string;
+  flag: string;
+}

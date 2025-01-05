@@ -45,7 +45,11 @@ const Navbar = () => {
   return (
     <nav>
       {isMobile ? (
-        <NavMobile />
+        <NavMobile 
+          user={user}
+          languages={languages}
+          handleLanguageChange={handleLanguageChange}
+        />
       ) : (
         <NavDesktop
           user={user}
