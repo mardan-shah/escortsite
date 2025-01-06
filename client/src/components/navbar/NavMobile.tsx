@@ -66,10 +66,10 @@ const NavMobile: React.FC<NavMobileProps> = ({ user, languages, handleLanguageCh
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild>
-                  <Link href="/profile">My Profile</Link>
+                  <Link href="/pages/profile">My Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/settings">Settings</Link>
+                  <Link href="/pages/settings">Settings</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => {/* Add logout logic here */}}>
@@ -86,10 +86,10 @@ const NavMobile: React.FC<NavMobileProps> = ({ user, languages, handleLanguageCh
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild>
-                  <Link href="/signin">Login</Link>
+                  <Link href="/pages/signin">Login</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/signup">Create Account</Link>
+                  <Link href="/pages/signup">Create Account</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

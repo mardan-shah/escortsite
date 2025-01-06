@@ -5,20 +5,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu';
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { user, Language } from '@/types/Navigation'; // Import shared interfaces
+import { user, Language } from '@/types/Navigation';
 
 interface NavDesktopProps {
-  user?: user | null; // User is optional or can be null
-  languages: Language[]; // Array of languages
-  handleLanguageChange: (languageCode: string) => void; // Function to change language
+  user?: user | null;
+  languages: Language[];
+  handleLanguageChange: (languageCode: string) => void;
 }
 
 const NavDesktop: React.FC<NavDesktopProps> = ({ user, languages, handleLanguageChange }) => {
@@ -26,9 +27,12 @@ const NavDesktop: React.FC<NavDesktopProps> = ({ user, languages, handleLanguage
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const handleSelect = (lang: Language) => {
-    setCurrentLanguage(lang);
-    handleLanguageChange(lang.code);
+  const handleSelect = (langCode: string) => {
+    const selectedLang = languages.find(lang => lang.code === langCode);
+    if (selectedLang) {
+      setCurrentLanguage(selectedLang);
+      handleLanguageChange(langCode);
+    }
   };
 
   useEffect(() => {
@@ -46,10 +50,10 @@ const NavDesktop: React.FC<NavDesktopProps> = ({ user, languages, handleLanguage
   };
 
   return (
-    <div className="min-h-auto bg-background">
+    <div className="min-h-auto bg-white">
       <div className="container flex h-16 items-center justify-between px-4 md:px-8 lg:px-28">
         <div className="w-1/2 md:w-1/3">
-          <Image src="/logo.svg" alt="Logo" width={50} height={50} />
+          <Link href='/'><Image src="/logo.svg" alt="Logo" width={50} height={50} /></Link>
         </div>
 
         <div className="flex items-center w-1/2 md:w-2/3 justify-end gap-3 md:gap-4 lg:gap-6">
@@ -76,52 +80,48 @@ const NavDesktop: React.FC<NavDesktopProps> = ({ user, languages, handleLanguage
               </Button>
             )}
           </div>
-          <Button variant="ghost" size="default" className="flex items-center gap-2 hover:bg-gray-200 ">
-            <Link href="/contact" className="hidden md:flex items-center whitespace-nowrap">
+          
+          <Button variant="ghost" size="default" className="flex items-center gap-2 hover:bg-gray-200">
+            <Link href="/pages/contact" className="hidden md:flex items-center whitespace-nowrap">
               <span>Contact</span>
               <Mail className="h-4 w-4 ml-2" />
             </Link>
           </Button>
+
           {user ? (
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="flex items-center gap-2">
-                    <UserRound className="h-5 w-5" />
-                    <span className="truncate max-w-[100px]">{user.name || 'My Profile'}</span>
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent className="min-w-[160px] bg-white rounded-md shadow-lg">
-                    <ul className="p-2">
-                      <li>
-                        <Link href="/profile" className="block px-3 py-2 hover:bg-gray-200 rounded-md">
-                          My Profile
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/settings" className="block px-3 py-2 hover:bg-gray-200 rounded-md">
-                          Settings
-                        </Link>
-                      </li>
-                      <li>
-                        <button onClick={() => {/* Add logout logic here */}} className="w-full text-left px-3 py-2 hover:bg-gray-200 rounded-md">
-                          Logout
-                        </button>
-                      </li>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+            <Select onValueChange={(value) => {
+              if (value === 'logout') {
+                // Add logout logic here
+              } else if (value === 'profile') {
+                window.location.href = '/profile';
+              } else if (value === 'settings') {
+                window.location.href = '/settings';
+              }
+            }}>
+              <SelectTrigger className="w-[180px]">
+                <div className="flex items-center gap-2">
+                  <UserRound className="h-5 w-5" />
+                  <span className="truncate">{user.name || 'My Profile'}</span>
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="profile"><Link href='/pages/profile'>My Profile</Link></SelectItem>
+                  <SelectItem value="settings"><Link href='/pages/settings'></Link>Settings</SelectItem>
+                  <SelectItem value="logout">Logout</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           ) : (
             <>
               <Button variant="ghost" size="default" className="flex items-center gap-2 hover:bg-gray-200">
-                <Link href="/signup" className="hidden md:flex items-center whitespace-nowrap">
+                <Link href="/pages/signup" className="hidden md:flex items-center whitespace-nowrap">
                   <span>Create Account</span>
                   <UserRoundPlus className="h-4 w-4 ml-2" />
                 </Link>
               </Button>
               <Button variant="ghost" size="default" className="flex items-center gap-2 hover:bg-gray-200">
-                <Link href="/signin" className="flex items-center whitespace-nowrap">
+                <Link href="/pages/signin" className="flex items-center whitespace-nowrap">
                   <span className="hidden md:inline">Login</span>
                   <UserRound className="h-4 w-4 ml-2" />
                 </Link>
@@ -129,42 +129,36 @@ const NavDesktop: React.FC<NavDesktopProps> = ({ user, languages, handleLanguage
             </>
           )}
 
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="flex items-center gap-2 px-2 md:px-3">
-                  <Image
-                    src={currentLanguage.flag}
-                    alt={currentLanguage.name}
-                    width={24}
-                    height={24}
-                  />
-                  <span className="hidden md:inline">{currentLanguage.name}</span>
-                </NavigationMenuTrigger>
-
-                <NavigationMenuContent className="min-w-[160px] md:min-w-[200px] bg-white rounded-md shadow-lg">
-                  <ul className="p-2">
-                    {languages.map((lang) => (
-                      <li key={lang.code}>
-                        <button
-                          onClick={() => handleSelect(lang)}
-                          className="w-full flex items-center gap-2 px-3 py-2 hover:bg-gray-200 rounded-md"
-                        >
-                          <Image
-                            src={lang.flag}
-                            alt={lang.name}
-                            width={24}
-                            height={24}
-                          />
-                          <span>{lang.name}</span>
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <Select onValueChange={handleSelect} defaultValue={currentLanguage.code}>
+            <SelectTrigger className="w-[180px]">
+              <div className="flex items-center gap-2">
+                <Image
+                  src={currentLanguage.flag}
+                  alt={currentLanguage.name}
+                  width={24}
+                  height={24}
+                />
+                <span className="hidden md:inline">{currentLanguage.name}</span>
+              </div>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                {languages.map((lang) => (
+                  <SelectItem key={lang.code} value={lang.code}>
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src={lang.flag}
+                        alt={lang.name}
+                        width={24}
+                        height={24}
+                      />
+                      <span>{lang.name}</span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </div>
@@ -172,4 +166,3 @@ const NavDesktop: React.FC<NavDesktopProps> = ({ user, languages, handleLanguage
 };
 
 export default NavDesktop;
-
