@@ -54,7 +54,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
         variant="outline"
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
-        className="text-secondarygray border-secondarygray hover:bg-secondarygray/10"
+        className="text-white bg-secondarygray/70 border-secondarygray hover:bg-secondarygray/10"
       >
         <ChevronLeft className="h-4 w-4" />
         Previous
@@ -83,7 +83,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
         variant="outline"
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
-        className="text-secondarygray border-secondarygray hover:bg-secondarygray/10"
+        className="text-white border-secondarygray bg-primarypink"
       >
         Next <ChevronRight className="h-4 w-4" />
       </Button>

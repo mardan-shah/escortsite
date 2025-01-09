@@ -11,7 +11,7 @@ const paymentMethods = [
 
 const Footer = () => {
   return (
-    <footer className="pt-12 md:py-16 border-t-4 border-primarypink bg-white">
+    <footer className="pt-12 md:py-8 border-t-4 border-primarypink bg-white">
       <div className="w-[90%] mx-auto">
         <div className="container flex flex-col md:flex-row gap-8">
           {/* Left Content Section */}
@@ -34,7 +34,7 @@ const Footer = () => {
                 <ul className="space-y-2">
                   <li>
                     <Link
-                      href="/about"
+                      href="/pages/about"
                       className="text-muted-foreground hover:text-foreground"
                     >
                       About us
@@ -42,7 +42,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/plans"
+                      href="/pages/plans"
                       className="text-muted-foreground hover:text-foreground"
                     >
                       Subscription plans
@@ -50,7 +50,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/advertise"
+                      href="/pages/advertise"
                       className="text-muted-foreground hover:text-foreground"
                     >
                       Advertisement
@@ -58,7 +58,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/contact"
+                      href="/pages/contact"
                       className="text-muted-foreground hover:text-foreground"
                     >
                       Contact us
@@ -66,7 +66,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/faqs"
+                      href="/pages/faqs"
                       className="text-muted-foreground hover:text-foreground"
                     >
                       FAQs
@@ -74,7 +74,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/privacy"
+                      href="/pages/privacy"
                       className="text-muted-foreground hover:text-foreground"
                     >
                       Privacy policy
@@ -82,7 +82,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/terms"
+                      href="/pages/terms"
                       className="text-muted-foreground hover:text-foreground"
                     >
                       Terms & Conditions
@@ -156,7 +156,7 @@ const Footer = () => {
         </div>
 
         {/* Footer Disclaimer */}
-        <p className="mt-8 text-sm text-muted-foreground">
+        <p className="mt-4 text-sm text-muted-foreground">
           This website serves as both a platform for advertising and a source of
           information. It&apos;s important to clarify that we are not affiliated
           with or responsible for any of the websites or individuals mentioned
@@ -170,7 +170,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom Section */}
-      <div className="mt-6">
+      <div className="mt-5">
         <h1 className="text-center text-muted-foreground text-md b-0">
           2024 Copyright by hornyneigbour
         </h1>

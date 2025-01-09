@@ -1,6 +1,7 @@
 import LowerNav from "@/components/lowerNav/LowerNav";
 import VerificationBar from "@/components/lowerNav/VerificationBar";
 import Cards from "@/components/cards/Card";
+import Advertise from "@/components/advertisewithus/Advertise";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -15,16 +16,7 @@ const Home = () => {
       <VerificationBar />
       <Carousel />
       <Cards />
-      {/* Full width div with background image */}
-      <div className="w-full h-[60vh] bg-cover bg-center bg-no-repeat text-white flex items-center justify-center text-center py-2" style={{ backgroundImage: "url('/young.png')" }}>
-        <div className="w-3/4 px-6 py-8  ">
-          <h1 className="text-lg font-bold mb-4 sm:text-2xl md:text-3xl">Advertise with us!</h1>
-          <p className="text-sm mb-6 sm:text-md md:text-lg">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi tempore architecto aliquam illum corporis adipisci. Amet quibusdam magnam enim, dolore asperiores dolorem maxime aperiam ipsam cumque nulla, ullam quis odio? Excepturi explicabo quasi consequuntur non numquam facere autem corrupti expedita quia totam obcaecati sapiente eligendi reiciendis doloribus id, temporibus atque labore sint, fugiat sunt modi cumque nostrum. Id, dolore recusandae?</p>
-          <Link href='/advertise'>
-            <Button className="bg-primarypink px-6 py-3 text-lg  sm:px-5 sm:py-2 sm:text-md md:px-6 md:py-3 md:text-lg">Advertise now!</Button>
-          </Link>
-        </div>
-      </div>
+      <Advertise />
 
       {/*About us*/}
       <section className="container p-12 md:p-24">
@@ -39,9 +31,11 @@ const Home = () => {
               <p className="leading-relaxed">
                 At HornyNeighbour, we understand the importance of visibility and engagement in the escort industry. That’s why we offer comprehensive tools and features to help you stand out. From creating detailed advertisements to tracking performance with advanced statistics, our platform is designed to support your business growth.              </p>
             </div>
-            <Button variant="outline" className="mt-4 w-32 hover:bg-primarypink hover:text-white shadow-lg">
-              Learn more
-            </Button>
+            <Link href='/pages/about'>
+              <Button variant="outline" className="mt-4 w-32 hover:bg-primarypink hover:text-white shadow-lg">
+                Learn more
+              </Button>
+            </Link>
           </div>
           <div className="flex-1 relative aspect-[4/3] w-full max-w-xl order-1 md:order-2">
             <Image

@@ -1,26 +1,51 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { faker } from '@faker-js/faker';
 import NavDesktop from './NavDesktop';
 import NavMobile from './NavMobile'; 
-import { user, Language } from '@/types/Navigation'; 
+import { User, Language } from '@/types/Navigation'; 
+
+const generateMockUser = (): User => ({
+  id: faker.string.uuid(),
+  name: faker.person.fullName(),
+  email: faker.internet.email(),
+  profilePic: faker.image.avatar(),
+  totaltokens:faker.number.int()%100,
+});
+
+const generateMockLanguages = (): Language[] => [
+  { 
+    code: 'en',
+    name: 'English',
+    flag: faker.image.url({ width: 24, height: 24 })
+  },
+  { 
+    code: 'fr',
+    name: 'French',
+    flag: faker.image.url({ width: 24, height: 24 })
+  },
+  { 
+    code: 'es',
+    name: 'Spanish',
+    flag: faker.image.url({ width: 24, height: 24 })
+  },
+  { 
+    code: 'de',
+    name: 'German',
+    flag: faker.image.url({ width: 24, height: 24 })
+  }
+];
 
 const Navbar = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [user, setUser] = useState<user | null>(null); 
+  const [user, setUser] = useState<User>(generateMockUser());
   const [language, setLanguage] = useState('en');
-
-  const languages = [
-    { code: 'en', name: 'English', flag: 'https://unsplash.it/100/100?image=10' },
-    { code: 'fr', name: 'French', flag: 'https://unsplash.it/100/100?image=20' },
-    { code: 'es', name: 'Spanish', flag: 'https://unsplash.it/100/100?image=30' },
-    { code: 'de', name: 'German', flag: 'https://unsplash.it/100/100?image=40' },
-  ];
+  const [languages] = useState<Language[]>(generateMockLanguages());
 
   const handleLanguageChange = (code: string) => {
     setLanguage(code);
-    // Add language update logic (e.g., i18n library integration)
   };
 
   const updateScreenSize = () => {
@@ -37,9 +62,8 @@ const Navbar = () => {
     };
   }, []);
 
-  // Return null or a loading state until the component is mounted
   if (!isMounted) {
-    return null; 
+    return <div className="h-16" />;
   }
 
   return (

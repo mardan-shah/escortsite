@@ -5,8 +5,12 @@ export interface Language {
   flag: string;
 }
 
-export interface user {
-  name?: string;
+export interface User {
+  id?:string,
+  name?: string,
+  email?: string,
+  profilePic?:string,
+  totaltokens?:number,
 }
 
 export interface City {

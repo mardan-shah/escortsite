@@ -4,15 +4,7 @@ import { faker } from '@faker-js/faker';
 import { useState, useEffect } from "react";
 import ProfileCard from "@/components/cards/ProfileCard";
 import Pagination from "@/components/cards/PaginationCards";
-
-interface Profile {
-  name: string;
-  rating: string;
-  age: number;
-  height: string;
-  price: number;
-  image: string;
-}
+import { Profile } from '@/types/Cards';
 
 // Function to generate dummy profiles
 const generateProfiles = (count: number): Profile[] => {
@@ -31,6 +23,10 @@ const generateProfiles = (count: number): Profile[] => {
       height: `${feet}'${inches}"`, // Format height properly
       price,
       image: faker.image.avatar(),
+      label1: faker.lorem.word(),
+      label2: faker.lorem.word(),
+      label3: faker.lorem.word(),
+      label4: faker.lorem.word(),
     };
   });
 };
@@ -42,7 +38,7 @@ const Cards = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setProfiles(generateProfiles(200));
+      setProfiles(generateProfiles(100));
     }, 2000);
   }, []);
 
@@ -56,11 +52,11 @@ const Cards = () => {
   };
 
   return (
-    <main className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto w-full sm:w-4/5 lg:w-4/5">
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+    <main className=" mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full lg:w-4/5">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {currentProfiles.map((profile, i) => (
-            <ProfileCard key={i} profile={profile} />
+            <ProfileCard key={i} profile={profile} edit={false}/>
           ))}
         </div>
       </div>

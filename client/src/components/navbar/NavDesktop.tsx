@@ -4,20 +4,15 @@ import { Search, Mail, UserRoundPlus, UserRound } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue,} from "@/components/ui/select";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { user, Language } from '@/types/Navigation';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,} from "@/components/ui/dropdown-menu";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger,} from "@/components/ui/alert-dialog";
+import { User, Language } from '@/types/Navigation';
 
 interface NavDesktopProps {
-  user?: user | null;
+  user?: User | null;
   languages: Language[];
   handleLanguageChange: (languageCode: string) => void;
 }
@@ -89,29 +84,77 @@ const NavDesktop: React.FC<NavDesktopProps> = ({ user, languages, handleLanguage
           </Button>
 
           {user ? (
-            <Select onValueChange={(value) => {
-              if (value === 'logout') {
-                // Add logout logic here
-              } else if (value === 'profile') {
-                window.location.href = '/profile';
-              } else if (value === 'settings') {
-                window.location.href = '/settings';
-              }
-            }}>
-              <SelectTrigger className="w-[180px]">
-                <div className="flex items-center gap-2">
-                  <UserRound className="h-5 w-5" />
-                  <span className="truncate">{user.name || 'My Profile'}</span>
-                </div>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value="profile"><Link href='/pages/profile'>My Profile</Link></SelectItem>
-                  <SelectItem value="settings"><Link href='/pages/settings'></Link>Settings</SelectItem>
-                  <SelectItem value="logout">Logout</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+            <>
+              <Link href='/pages/tokens'>
+                <Button className='bg-gold/30 text-gold flex min-w-20 w-auto rounded-xl p-1 hover:bg-primarypink/10'>
+                  <Image src='/tokens/TokenIcon.svg' alt='token' width='20' height='20'/>
+                  <span className='py-2'>+ {user.totaltokens}</span>
+                </Button>
+              </Link>
+              <div className="flex items-center">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                      {user.profilePic ? (
+                        <Image
+                          src={user.profilePic}
+                          alt="Profile picture"
+                          className="rounded-full"
+                          fill
+                        />
+                      ) : (
+                        <div className="border rounded-full w-8 h-8 flex items-center justify-center">
+                          <UserRound className="h-5 w-5" />
+                        </div>
+                      )}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56" align="end">
+                    <DropdownMenuLabel>
+                      <div className="flex flex-col space-y-1">
+                        <p className="text-sm font-medium">{user.name}</p>
+                        <p className="text-xs text-gray-500">{user.email}</p>
+                      </div>
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                      <Link href="/pages/profile" className="flex w-full">
+                        Profile
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Link href="/pages/settings" className="flex w-full">
+                        Settings
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-red-600">
+                          Log out
+                        </DropdownMenuItem>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Are you sure you want to log out?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            You will be logged out of your account and redirected to the home page.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction onClick={() => {
+                            // Add logout logic here
+                          }} className="bg-red-600 hover:bg-red-700">
+                            Log out
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </>
           ) : (
             <>
               <Button variant="ghost" size="default" className="flex items-center gap-2 hover:bg-gray-200">

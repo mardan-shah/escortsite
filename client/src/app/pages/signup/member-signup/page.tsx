@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
+import PasswordInput from '@/components/passwordchecks/PasswordInput'
 import Link from 'next/link'
 
 interface FormData {
@@ -23,17 +24,32 @@ const MemberAccount = () => {
     agreeToTerms: false
   })
 
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-  }
+    e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      setErrorMessage("Passwords do not match");
+      return;
+    }
+
+    if (!formData.agreeToTerms) {
+      setErrorMessage("You must agree to the terms and conditions");
+      return;
+    }
+
+    // Handle successful form submission
+    setErrorMessage(null);
+    console.log("Form data submitted:", formData);
+  };
 
   return (
     <div className="min-h-scree flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="text-center text-3xl font-bold text-primarypink">
-            Member account
+            Member Account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Create your account
@@ -71,36 +87,20 @@ const MemberAccount = () => {
               />
             </div>
 
-            <div>
-              <div className="flex justify-between items-center">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Password <span className="text-red-500">*</span>
-                </label>
-                <span className="text-xs text-gray-500">Password strength: neutral</span>
-              </div>
-              <Input
-                id="password"
-                type="password"
-                required
-                className="mt-1"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              />
-            </div>
+            <PasswordInput
+              value={formData.password}
+              onChange={(value) => setFormData({ ...formData, password: value })}
+              label="Password"
+              required
+            />
 
-            <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-                Confirm password <span className="text-red-500">*</span>
-              </label>
-              <Input
-                id="confirmPassword"
-                type="password"
-                required
-                className="mt-1"
-                value={formData.confirmPassword}
-                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-              />
-            </div>
+            <PasswordInput
+              value={formData.confirmPassword}
+              onChange={(value) => setFormData({ ...formData, confirmPassword: value })}
+              label="Confirm Password"
+              required
+              showRequirements={false}
+            />
 
             <div className="flex items-center">
               <Checkbox
