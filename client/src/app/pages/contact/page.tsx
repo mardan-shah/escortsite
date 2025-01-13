@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 const Contact = () => {
   return (
     <div className="w-full flex items-start justify-center min-h-screen py-8 px-4">
-      <div className=" p-8  w-[60%] ">
+      <div className=" p-8  w-full md:w-[60%] ">
         <h1 className="text-primarypink text-center text-4xl py-4">Send us a message</h1>
         <h3 className="text-gray-600 text-center">We aim to respond to all email inquiries within 48 hours</h3>
         <form>

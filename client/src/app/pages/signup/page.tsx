@@ -38,15 +38,15 @@ const Signup = () => {
   ];
 
   return (
-    <section className="w-full py-12">
-      <div className="container flex justify-center">
-        <div className="w-3/4">
-          <h2 className="text-3xl font-bold text-center text-primarypink mb-8">Create new account</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {accountTypes.map((account, index) => (
-              <SignupCard key={index} {...account} />
-            ))}
-          </div>
+    <section className="w-full py-12 px-4">
+      <h2 className="text-3xl font-bold text-center text-primarypink mb-8">
+        Create new account
+      </h2>
+      <div className="flex justify-center">
+        <div className="flex flex-wrap gap-6 justify-center">
+          {accountTypes.map((account, index) => (
+            <SignupCard key={index} {...account} />
+          ))}
         </div>
       </div>
     </section>

@@ -46,7 +46,7 @@ const NavDesktop: React.FC<NavDesktopProps> = ({ user, languages, handleLanguage
 
   return (
     <div className="min-h-auto bg-white">
-      <div className="container flex h-16 items-center justify-between px-4 md:px-8 lg:px-28">
+      <div className="flex h-16 items-center justify-between px-4 md:px-8 lg:px-28">
         <div className="w-1/2 md:w-1/3">
           <Link href='/'><Image src="/logo.svg" alt="Logo" width={50} height={50} /></Link>
         </div>
