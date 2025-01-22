@@ -7,10 +7,10 @@ const PrivacyPolicy = () => {
         <p className="py-4">Effective Date: [Insert Date]</p>
 
         <p className="py-4">
-          Welcome to HornyNeighbour ("we," "our," "us"). We value your privacy and are
+          Welcome to HornyNeighbour (&quot;we,&quot; &quot;our,&quot; &quot;us&quot;). We value your privacy and are
           committed to protecting your personal information. This Privacy Policy explains
           how we collect, use, disclose, and safeguard your information when you visit
-          our website [Insert Website URL] (the "Site"). Please read this policy
+          our website [Insert Website URL] (the &quot;Site&quot;). Please read this policy
           carefully. If you do not agree with the terms of this privacy policy, please do
           not access the site.
         </p>
@@ -116,7 +116,7 @@ const PrivacyPolicy = () => {
         <h2 className="text-lg pt-4">Changes to This Privacy Policy</h2>
         <p className="text-sm">
           We may update this Privacy Policy from time to time. We will notify you of any
-          changes by updating the "Effective Date" of this Privacy Policy. You are
+          changes by updating the &quot;Effective Date&quot; of this Privacy Policy. You are
           encouraged to review this Privacy Policy periodically to stay informed of
           updates.
         </p>

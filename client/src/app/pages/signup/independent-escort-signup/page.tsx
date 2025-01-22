@@ -28,6 +28,7 @@ const CreateAccount = () => {
   })
 
   const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -41,25 +42,22 @@ const CreateAccount = () => {
     }
   }
 
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (formData.password !== formData.confirmPassword) {
-      setErrorMessage("Passwords do not match");
-      return;
+      setErrorMessage("Passwords do not match")
+      return
     }
 
     if (!formData.agreeToTerms) {
-      setErrorMessage("You must agree to the terms and conditions");
-      return;
+      setErrorMessage("You must agree to the terms and conditions")
+      return
     }
 
-    // Handle successful form submission
-    setErrorMessage(null);
-    console.log("Form data submitted:", formData);
-  };
+    setErrorMessage(null)
+    console.log("Form data submitted:", formData)
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
@@ -72,6 +70,10 @@ const CreateAccount = () => {
             Create your account
           </p>
         </div>
+        
+        {errorMessage && (
+          <div className="text-red-500 text-sm text-center">{errorMessage}</div>
+        )}
         
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
@@ -154,14 +156,13 @@ const CreateAccount = () => {
                   onChange={handleImageChange}
                 />
               </div>
-
             </div>
 
             <div className="flex items-center">
               <Checkbox
                 id="terms"
                 checked={formData.agreeToTerms}
-                onCheckedChange={(checked) => 
+                onCheckedChange={(checked) =>
                   setFormData({ ...formData, agreeToTerms: checked as boolean })}
               />
               <label htmlFor="terms" className="ml-2 block text-sm text-gray-700">
@@ -179,7 +180,7 @@ const CreateAccount = () => {
 
           <Button
             type="submit"
-            className="w-full bg-primarypink hover:bg-secondarypink text-white"
+            className="w-full mt-4 bg-primarypink hover:bg-primarypink/90 text-white"
           >
             Create an account
           </Button>

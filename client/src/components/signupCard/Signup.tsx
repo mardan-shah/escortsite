@@ -2,7 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from 'lucide-react';
 import Link from "next/link"; // Import Link from Next.js
-
+import Image from "next/image";
 interface AccountCardProps {
   title: string;
   imageSrc: string;
@@ -18,7 +18,7 @@ const SignupCard = ({ title, imageSrc, features, navigateTo }: AccountCardProps)
       </CardHeader>
       <CardContent className="flex-grow">
         <div className="aspect-[4/5] mb-4">
-          <img
+          <Image
             alt={`${title} profile`}
             className="rounded-lg object-cover w-full h-full"
             src={imageSrc}

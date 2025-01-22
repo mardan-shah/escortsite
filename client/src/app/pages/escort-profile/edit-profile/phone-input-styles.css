@@ -1,0 +1,29 @@
+/* Custom styles for react-phone-number-input */
+.PhoneInput {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 0.5rem;
+}
+
+.PhoneInputCountry {
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.PhoneInputInput {
+  flex: 1;
+  border: none;
+  padding: 0;
+  outline: none;
+  font-size: 0.875rem;
+}
+
+.PhoneInputCountrySelect {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+

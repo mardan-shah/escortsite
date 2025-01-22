@@ -4,12 +4,6 @@ import { useEffect, useState } from 'react';
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-interface CarouselSlide {
-  image: string;
-  title: string;
-  subtitle: string;
-}
-
 
 
 

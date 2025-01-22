@@ -8,6 +8,7 @@ import { Profile } from '@/types/Cards';
 
 // Function to generate dummy profiles
 const generateProfiles = (count: number): Profile[] => {
+  const index=0;
   return Array.from({ length: count }, () => {
     const age = faker.number.int({ min: 20, max: 60 });
     const price = faker.number.int({ min: 100, max: 300 });
@@ -17,6 +18,7 @@ const generateProfiles = (count: number): Profile[] => {
     const inches = heightInInches % 12;
 
     return {
+      id: index+ 1,
       name: faker.person.fullName(),
       rating,
       age,
@@ -38,7 +40,7 @@ const Cards = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setProfiles(generateProfiles(100));
+      setProfiles(generateProfiles(150));
     }, 2000);
   }, []);
 
@@ -52,9 +54,9 @@ const Cards = () => {
   };
 
   return (
-    <main className=" mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <main className=" mx-auto py-8 px-4 sm:px-6 lg:px-8 min-h-screen">
       <div className="mx-auto w-full lg:w-4/5">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <div className="flex justify-center flex-wrap gap-5 ">
           {currentProfiles.map((profile, i) => (
             <ProfileCard key={i} profile={profile} edit={false}/>
           ))}

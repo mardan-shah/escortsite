@@ -7,8 +7,8 @@ const TermsAndConditions = () => {
         <p className="py-4">Effective Date: [Insert Date]</p>
 
         <p className="py-4">
-          Welcome to HornyNeighbour ("we," "our," "us"). These Terms and Conditions
-          ("Terms") govern your use of our website [Insert Website URL] (the "Site") and
+          Welcome to HornyNeighbour (&quot;we,&quot; &quot;our,&quot; &quot;us&quot;). These Terms and Conditions
+          (&quot;Terms&quot;) govern your use of our website [Insert Website URL] (the &quot;Site&quot;) and
           our services. By accessing or using the Site, you agree to be bound by these
           Terms. If you do not agree with these Terms, please do not use the Site.
         </p>
@@ -103,8 +103,8 @@ const TermsAndConditions = () => {
 
         <h2 className=" text-lg pt-4">Disclaimer</h2>
         <p className="text-sm">
-          Your use of the Site is at your sole risk. The Site is provided on an "AS IS"
-          and "AS AVAILABLE" basis. The Site is provided without warranties of any kind,
+          Your use of the Site is at your sole risk. The Site is provided on an &quot;AS IS&quot;
+          and &quot;AS AVAILABLE&quot; basis. The Site is provided without warranties of any kind,
           whether express or implied, including, but not limited to, implied warranties
           of merchantability, fitness for a particular purpose, non-infringement, or
           course of performance.
@@ -119,7 +119,7 @@ const TermsAndConditions = () => {
         <h2 className=" text-lg pt-4">Changes to Terms</h2>
         <p className="text-sm">
           We reserve the right, at our sole discretion, to modify or replace these Terms
-          at any time. If a revision is material, we will provide at least 30 days'
+          at any time. If a revision is material, we will provide at least 30 days&apos;
           notice prior to any new terms taking effect. What constitutes a material change
           will be determined at our sole discretion. By continuing to access or use our
           Site after any revisions become effective, you agree to be bound by the revised

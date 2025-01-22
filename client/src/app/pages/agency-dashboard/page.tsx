@@ -1,5 +1,5 @@
 'use client'
-import { Dot, Ellipsis } from "lucide-react";
+import { Dot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ProfileCard from "@/components/cards/ProfileCard";
 import { faker } from '@faker-js/faker';
@@ -7,6 +7,8 @@ import { faker } from '@faker-js/faker';
 import { useState,useEffect } from "react";
 import { Profile } from "@/types/Cards";
 import Image from "next/image";
+import Table from '@/components/agency/Table'
+import Boost from "@/components/boost/Boost";
 
 interface Agency{
   name?:string;
@@ -51,7 +53,7 @@ const AgencyDashboard = () => {
     name:'Wind Angels'
   }
   return (
-    <div className="w-full md:w-3/4 mx-auto">
+    <div className="w-full md:w-3/4 mx-auto mt-10 mb-32">
       <h1 className="text-primarypink text-center text-4xl py-4">Agency Dashboard</h1>
       <div className="w-full bg-white flex justify-between items-center h-26 shadow-xl p-4 my-4">
       <div className="flex items-center">
@@ -66,33 +68,12 @@ const AgencyDashboard = () => {
         Escort Management
       </Button>
 
-      <div className="w-full bg-gold text-white uppercase my-4 flex justify-evenly h-20">
-        <div className="w-1/2 relative">
-          <h1 className="w-full absolute bottom-0 p-5 inset-x-0 text-lg">get up to <span className="text-5xl">3x</span> more profile visits! </h1>
-        </div>
-        <div className="w-1/2 flex flex-col justify-center items-center">
-          <Button className=" bg-white text-gold w-3/4 shadow-lg">Boost Advertisement</Button>
-          <h1 className="text-md">Get top advertisement spots now</h1>
-        </div>
-      </div>
+      <Boost/>
 
-      <div className="w-full flex justify-between">
-        <div className="w-[90%] flex gap-2">
-          <Button className="bg-white text-secondarygray/50 w-1/2 hover:text-white ">+ Add Advertisement</Button>
-          <Button className="bg-white text-secondarygray/50 w-1/2 hover:text-white ">- Delist Advertisement</Button>
-        </div>
-        <div className="w-[10%] flex justify-center">
-          <Button className="bg-white text-secondarygray/50 w-1/2 hover:text-white "><Ellipsis /></Button>
-        </div>
-      </div>
-
-
-      <div className=" container mx-auto w-full my-10">
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {profiles.map((profile, i) => (
-            <ProfileCard key={i} profile={profile} edit={true}/>
-          ))}
-        </div>
+      <div className="flex justify-center flex-wrap gap-5 py-10">
+        {profiles.map((profile, i) => (
+          <ProfileCard key={i} profile={profile} edit={true}/>
+        ))}
       </div>
       
       <div>
@@ -104,6 +85,8 @@ const AgencyDashboard = () => {
           className="w-full h-auto object-cover"
         />
       </div>
+      <Table />
+      
     </div>
   );
 }

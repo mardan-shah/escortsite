@@ -1,0 +1,130 @@
+
+.progressBar {
+  list-style: none;
+  overflow: hidden;
+  font-weight: 600;
+  display: flex;
+  counter-reset: li;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.progressBarStep {
+  background: var(--secondary-pink);
+  color: #fff;
+  position: relative;
+  padding: 10px 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  font-size: 12px;
+  flex: 1; /* This makes steps take equal width */
+}
+
+/* Add arrow styling for all screen sizes */
+.progressBarStep:after {
+  border-bottom: 25px solid transparent;
+  border-top: 25px solid transparent;
+  border-left: 20px solid var(--secondary-pink);
+  content: " ";
+  display: block;
+  height: 0;
+  left: 100%;
+  margin-top: -25px;
+  position: absolute;
+  top: 50%;
+  width: 0;
+  z-index: 2;
+  transition: border-left-color 0.5s ease;
+}
+
+.progressBarStep:before {
+  border-bottom: 25px solid transparent;
+  border-top: 25px solid transparent;
+  border-left: 20px solid white;
+  content: " ";
+  display: block;
+  height: 0;
+  left: 100%;
+  margin-top: -25px;
+  position: absolute;
+  top: 50%;
+  width: 0;
+  z-index: 1;
+  margin-left: 3px;
+}
+
+/* Remove arrows from last step */
+.progressBarStep:last-child:after,
+.progressBarStep:last-child:before {
+  display: none;
+}
+
+@media screen and (min-width: 800px) {
+  .progressBarStep {
+    padding: 10px 0 10px 45px;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .progressBarStep:first-child {
+    padding: 10px 0 10px 20px;
+  }
+}
+
+.current {
+  background: var(--primary-pink);
+  color: white;
+}
+
+.current:after {
+  border-left: 20px solid var(--primary-pink) !important;
+}
+
+.number {
+  margin-right: 10px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  display: inline-block;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  width: 16px;
+  font-size: 10px;
+  transition: all 0.5s ease;
+}
+
+.current .number {
+  background: white;
+  color: var(--primary-pink);
+}
+
+@media screen and (max-width: 400px) {
+  .progressBarStep {
+    font-size: 10px;
+    padding: 10px 25px 10px 5px; /* Add right padding for arrow */
+  }
+  
+  .number {
+    height: 14px;
+    width: 14px;
+    line-height: 14px;
+    font-size: 8px;
+  }
+
+  /* Adjust arrow size for mobile */
+  .progressBarStep:after {
+    border-bottom: 20px solid transparent;
+    border-top: 20px solid transparent;
+    border-left: 15px solid var(--secondary-pink);
+    margin-top: -20px;
+  }
+
+  .progressBarStep:before {
+    border-bottom: 20px solid transparent;
+    border-top: 20px solid transparent;
+    border-left: 15px solid white;
+    margin-top: -20px;
+  }
+}

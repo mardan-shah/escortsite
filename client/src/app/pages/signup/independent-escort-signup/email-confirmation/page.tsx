@@ -14,20 +14,22 @@ export default function EmailVerificationPage() {
             Email Verification
           </h1>
           <p className="text-gray-600 text-center mb-4">
-            We've sent a verification link to your email. Please click the
+            We&apos;ve sent a verification link to your email. Please click the
             button in the email to verify your account.
           </p>
           <p className="text-gray-600 text-center mb-6">
             If not automatically redirected after verification, click on the
             continue button.
           </p>
-          <Button className="w-full py-2 px-4 bg-primarypink hover:bg-primarypink/90 text-white rounded-lg font-medium">
-            Continue
-          </Button>
+          <Link href='/pages/create-advertisement'>
+            <Button className="w-full py-2 px-4 bg-primarypink hover:bg-primarypink/90 text-white rounded-lg font-medium">
+              Continue
+            </Button>
+          </Link>
         </div>
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600 mb-2">
-            Didn't receive the email?
+            Didn&apos;t receive the email?
           </p>
           <ul className="text-sm text-gray-600 list-disc list-inside mb-4">
             <li>Check your spam or junk folder.</li>
@@ -42,7 +44,7 @@ export default function EmailVerificationPage() {
             </li>
           </ul>
           <Link
-            href="/signin"
+            href="/pages/signin"
             className="text-sm text-primarypink hover:underline font-medium"
           >
             Back to login

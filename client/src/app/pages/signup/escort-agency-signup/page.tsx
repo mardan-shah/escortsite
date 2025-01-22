@@ -128,12 +128,14 @@ const EscortAgencyAccount = () => {
             <p className="text-red-500 text-sm text-center mt-2">{errorMessage}</p>
           )}
 
-          <Button
-            type="submit"
-            className="w-full bg-primarypink hover:bg-primarypink/90 text-white"
-          >
-            Create an account
-          </Button>
+          <Link href='/pages/agency-dashboard'>
+            <Button
+              type="submit"
+              className="w-full mt-2 bg-primarypink hover:bg-primarypink/90 text-white"
+            >
+              Create an account
+            </Button>
+          </Link>
         </form>
       </div>
     </div>

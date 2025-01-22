@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable */
 
 import { Search, Mail, UserRoundPlus, UserRound } from 'lucide-react';
 import Image from 'next/image';

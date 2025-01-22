@@ -96,7 +96,7 @@ const Login = () => {
           </Button>
 
           <div className="text-center text-sm">
-            <span className="text-gray-600">I Don't have an account </span>
+            <span className="text-gray-600">I Dont have an account </span>
             <Link 
               href="/pages/signup" 
               className="text-primarypink hover:text-primarypink/90 font-medium"

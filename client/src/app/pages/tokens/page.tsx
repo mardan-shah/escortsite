@@ -35,7 +35,7 @@ const BoosterTokenPage = ()=> {
           <div className="max-w-2xl mx-auto">
             <h2 className="text-xl font-semibold text-gold">1 Booster token = 24 hours advertisement boost</h2>
             <p className="text-gray-600 mt-2">
-              Your booster tokens can be used to boost your advertisement for 24 hours. When the booster token is activated, your advertisement will be the first one out of all the advertisements for your location. Every 30 minutes your advertisements will be placed at the top again. When the booster token is consumed, your advertisement will be marked with "Get on top of the day".
+              Your booster tokens can be used to boost your advertisement for 24 hours. When the booster token is activated, your advertisement will be the first one out of all the advertisements for your location. Every 30 minutes your advertisements will be placed at the top again. When the booster token is consumed, your advertisement will be marked with &quot;Get on top of the day&quot;.
             </p>
           </div>
         </div>

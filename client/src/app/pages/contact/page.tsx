@@ -32,7 +32,7 @@ const Contact = () => {
               id="message"
               name="message"
               placeholder="Your Message"
-              rows="4"
+              rows={4}
               className="mt-1 block w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primarypink"
             ></textarea>
           </div>

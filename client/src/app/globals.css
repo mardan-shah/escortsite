@@ -5,6 +5,8 @@
 
 @layer base {
   :root {
+    --primary-pink: #973C92;
+    --secondary-pink: #CB9DC8;
     --background: 0 0% 96%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;

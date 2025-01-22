@@ -50,7 +50,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/pages/advertise"
+                      href="/pages/signup"
                       className="text-muted-foreground hover:text-foreground"
                     >
                       Advertisement
