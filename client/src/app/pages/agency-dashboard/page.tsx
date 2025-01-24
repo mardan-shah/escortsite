@@ -70,6 +70,22 @@ const AgencyDashboard = () => {
 
       <Boost/>
 
+      <div className="w-full flex justify-between">
+          <div className="w-[90%] flex gap-2">
+            <Button className="bg-white text-secondarygray/50 w-1/2 hover:bg-primarypink hover:text-white">
+              <Link href='/pages/escort-profile/edit-advertisement'>+ Edit Advertisement</Link>
+            </Button>
+            <Button className="bg-white text-red-500 w-1/2 hover:bg-primarypink hover:text-white">
+              - Delist Advertisement
+            </Button>
+          </div>
+          <div className="w-[10%] flex justify-center">
+            <Button className="bg-white text-secondarygray/50 w-1/2 hover:bg-primarypink hover:text-white">
+              <Ellipsis />
+            </Button>
+          </div>
+        </div>
+
       <div className="flex justify-center flex-wrap gap-5 py-10">
         {profiles.map((profile, i) => (
           <ProfileCard key={i} profile={profile} edit={true}/>
