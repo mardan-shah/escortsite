@@ -9,6 +9,7 @@ import { Profile } from "@/types/Cards";
 import Image from "next/image";
 import Table from '@/components/agency/Table'
 import Boost from "@/components/boost/Boost";
+import Link from "next/link";
 
 interface Agency{
   name?:string;
