@@ -75,7 +75,7 @@ const AgencyDashboard = () => {
       <div className="w-full flex justify-between">
           <div className="w-[90%] flex gap-2">
             <Button className="bg-white text-secondarygray/50 w-1/2 hover:bg-primarypink hover:text-white">
-              <Link href='/pages/escort-profile/edit-advertisement'>+ Edit Advertisement</Link>
+              <Link href='/pages/escort-profile/edit-advertisement'>+ Add Advertisement</Link>
             </Button>
             <Button className="bg-white text-red-500 w-1/2 hover:bg-primarypink hover:text-white">
               - Delist Advertisement
