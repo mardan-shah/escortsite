@@ -123,7 +123,7 @@ export default function SubscriptionPayment() {
               </div>
             </div>
             
-           <Link href='/pages/profile'>
+           <Link href='/pages/escort-profile'>
               <Button 
                 className="w-full bg-primarypink text-white hover:bg-primarypink/90 mt-4"
               >

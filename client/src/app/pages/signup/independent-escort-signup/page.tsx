@@ -177,13 +177,14 @@ const CreateAccount = () => {
               </label>
             </div>
           </div>
-
-          <Button
-            type="submit"
-            className="w-full mt-4 bg-primarypink hover:bg-primarypink/90 text-white"
-          >
-            Create an account
-          </Button>
+            <Link href='/pages/signup/independent-escort-signup/email-confirmation'>
+              <Button
+              type="submit"
+              className="w-full mt-4 bg-primarypink hover:bg-primarypink/90 text-white"
+              >
+                Create an account
+              </Button>
+            </Link>
         </form>
       </div>
     </div>

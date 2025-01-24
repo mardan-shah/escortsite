@@ -22,6 +22,8 @@ const SignupCard = ({ title, imageSrc, features, navigateTo }: AccountCardProps)
             alt={`${title} profile`}
             className="rounded-lg object-cover w-full h-full"
             src={imageSrc}
+            width={1200}
+            height={1200}
           />
         </div>
         <div className="space-y-2">

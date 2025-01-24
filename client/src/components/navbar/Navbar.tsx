@@ -42,6 +42,8 @@ const Navbar = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [user, setUser] = useState<User>(generateMockUser());
+  //this will make navbar to user 
+  //const user =false
   const [language, setLanguage] = useState('en');
   const [languages] = useState<Language[]>(generateMockLanguages());
 
