@@ -10,6 +10,7 @@ import Image from "next/image";
 import Table from '@/components/agency/Table'
 import Boost from "@/components/boost/Boost";
 import Link from "next/link";
+import { Ellipsis } from "lucide-react";
 
 interface Agency{
   name?:string;
